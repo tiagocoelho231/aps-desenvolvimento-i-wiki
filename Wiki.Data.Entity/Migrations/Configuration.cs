@@ -5,14 +5,14 @@
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Wiki.Data.Entity.Context.CharacterDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Wiki.Data.Entity.Context.WikiDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Wiki.Data.Entity.Context.CharacterDbContext context)
+        protected override void Seed(Wiki.Data.Entity.Context.WikiDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

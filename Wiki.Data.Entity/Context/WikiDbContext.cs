@@ -9,7 +9,7 @@ using Wiki.Domain;
 
 namespace Wiki.Data.Entity.Context
 {
-    public class CharacterDbContext : DbContext
+    public class WikiDbContext : DbContext
     {
         public DbSet<Character> Characters { get; set; }
 

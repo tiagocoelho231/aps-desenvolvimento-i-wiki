@@ -51,7 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\CharacterDbContext.cs" />
+    <Compile Include="Context\WikiDbContext.cs" />
     <Compile Include="Migrations\202009272151105_InitialMigration.cs" />
     <Compile Include="Migrations\202009272151105_InitialMigration.designer.cs">
       <DependentUpon>202009272151105_InitialMigration.cs</DependentUpon>
