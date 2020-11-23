@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E40320D2-933F-4714-880B-5D8B4E9C8CF6}</ProjectGuid>
+    <ProjectGuid>{93E3BC8C-9C22-4C61-85BD-60D0CA27C177}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Wiki.Data.Entity</RootNamespace>
-    <AssemblyName>Wiki.Data.Entity</AssemblyName>
+    <RootNamespace>Wiki.Repositories.Entity</RootNamespace>
+    <AssemblyName>Wiki.Repositories.Entity</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -51,41 +51,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\WikiDbContext.cs" />
-    <Compile Include="Migrations\202009272151105_InitialMigration.cs" />
-    <Compile Include="Migrations\202009272151105_InitialMigration.designer.cs">
-      <DependentUpon>202009272151105_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011230013465_AddCharacterType.cs" />
-    <Compile Include="Migrations\202011230013465_AddCharacterType.designer.cs">
-      <DependentUpon>202011230013465_AddCharacterType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="CharactersRepository.cs" />
+    <Compile Include="CharacterTypesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TypeConfiguration\CharacterTypeConfiguration.cs" />
-    <Compile Include="TypeConfiguration\CharacterTypeTypeConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202009272151105_InitialMigration.resx">
-      <DependentUpon>202009272151105_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011230013465_AddCharacterType.resx">
-      <DependentUpon>202011230013465_AddCharacterType.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Wiki.Data.Entity\Wiki.Data.Entity.csproj">
+      <Project>{e40320d2-933f-4714-880b-5d8b4e9c8cf6}</Project>
+      <Name>Wiki.Data.Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Wiki.Domain\Wiki.Business.csproj">
       <Project>{1ed60d95-44f2-41fb-93dc-81e20edba217}</Project>
       <Name>Wiki.Business</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Wiki.Generic.Entity\Wiki.Generic.Entity.csproj">
-      <Project>{9ad6c2d2-26a7-4a5b-9c05-4daa596a592f}</Project>
-      <Name>Wiki.Generic.Entity</Name>
+    <ProjectReference Include="..\Wiki.Repositories.Common.Entity\Wiki.Repositories.Common.Entity.csproj">
+      <Project>{34861b6c-875d-4985-86da-cf1bc43657b5}</Project>
+      <Name>Wiki.Repositories.Common.Entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Wiki.Repositories.Common\Wiki.Repositories.Common.csproj">
+      <Project>{34541ea8-3ffa-4179-a2b8-fd94b315ad83}</Project>
+      <Name>Wiki.Repositories.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

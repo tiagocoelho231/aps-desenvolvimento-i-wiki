@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{986AD5ED-E3AE-4025-BB8E-239ACDF75670}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{986AD5ED-E3AE-4025-BB8E-239ACDF75670}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wiki.Domain", "Wiki.Domain\Wiki.Domain.csproj", "{1ED60D95-44F2-41FB-93DC-81E20EDBA217}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wiki.Business", "Wiki.Domain\Wiki.Business.csproj", "{1ED60D95-44F2-41FB-93DC-81E20EDBA217}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{D7E4FC04-0C96-450F-BA91-6553D5D76197}"
 EndProject
@@ -14,6 +14,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wiki.Generic.Entity", "Wiki.Generic.Entity\Wiki.Generic.Entity.csproj", "{9AD6C2D2-26A7-4A5B-9C05-4DAA596A592F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wiki.Web", "Wiki.Web\Wiki.Web.csproj", "{730EA83C-F325-4512-B051-01ED43FE74BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repositories", "Repositories", "{6527BDCF-4FA3-436C-BA31-F71029F58376}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wiki.Repositories.Common.Entity", "Wiki.Repositories.Common.Entity\Wiki.Repositories.Common.Entity.csproj", "{34861B6C-875D-4985-86DA-CF1BC43657B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wiki.Repositories.Entity", "Wiki.Repositories.Entity\Wiki.Repositories.Entity.csproj", "{93E3BC8C-9C22-4C61-85BD-60D0CA27C177}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wiki.Repositories.Common", "Wiki.Repositories.Common\Wiki.Repositories.Common.csproj", "{34541EA8-3FFA-4179-A2B8-FD94B315AD83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +45,18 @@ Global
 		{730EA83C-F325-4512-B051-01ED43FE74BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{730EA83C-F325-4512-B051-01ED43FE74BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{730EA83C-F325-4512-B051-01ED43FE74BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34861B6C-875D-4985-86DA-CF1BC43657B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34861B6C-875D-4985-86DA-CF1BC43657B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34861B6C-875D-4985-86DA-CF1BC43657B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34861B6C-875D-4985-86DA-CF1BC43657B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93E3BC8C-9C22-4C61-85BD-60D0CA27C177}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93E3BC8C-9C22-4C61-85BD-60D0CA27C177}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93E3BC8C-9C22-4C61-85BD-60D0CA27C177}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93E3BC8C-9C22-4C61-85BD-60D0CA27C177}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34541EA8-3FFA-4179-A2B8-FD94B315AD83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34541EA8-3FFA-4179-A2B8-FD94B315AD83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34541EA8-3FFA-4179-A2B8-FD94B315AD83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34541EA8-3FFA-4179-A2B8-FD94B315AD83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,6 +65,9 @@ Global
 		{1ED60D95-44F2-41FB-93DC-81E20EDBA217} = {986AD5ED-E3AE-4025-BB8E-239ACDF75670}
 		{E40320D2-933F-4714-880B-5D8B4E9C8CF6} = {D7E4FC04-0C96-450F-BA91-6553D5D76197}
 		{9AD6C2D2-26A7-4A5B-9C05-4DAA596A592F} = {D7E4FC04-0C96-450F-BA91-6553D5D76197}
+		{34861B6C-875D-4985-86DA-CF1BC43657B5} = {6527BDCF-4FA3-436C-BA31-F71029F58376}
+		{93E3BC8C-9C22-4C61-85BD-60D0CA27C177} = {6527BDCF-4FA3-436C-BA31-F71029F58376}
+		{34541EA8-3FFA-4179-A2B8-FD94B315AD83} = {6527BDCF-4FA3-436C-BA31-F71029F58376}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {399623AD-2BD1-4F41-81FF-9C4664B5EDC3}

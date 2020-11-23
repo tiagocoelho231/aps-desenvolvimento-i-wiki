@@ -7,8 +7,8 @@
     <ProjectGuid>{1ED60D95-44F2-41FB-93DC-81E20EDBA217}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Wiki.Domain</RootNamespace>
-    <AssemblyName>Wiki.Domain</AssemblyName>
+    <RootNamespace>Wiki.Business</RootNamespace>
+    <AssemblyName>Wiki.Business</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Character.cs" />
+    <Compile Include="CharacterType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

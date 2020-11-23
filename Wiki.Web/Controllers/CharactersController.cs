@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -6,20 +7,38 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Wiki.Business;
 using Wiki.Data.Entity.Context;
-using Wiki.Domain;
+using Wiki.Repositories.Common;
+using Wiki.Repositories.Entity;
+using Wiki.Web.ViewModels.Character;
+using Wiki.Web.ViewModels.CharacterType;
 
 namespace Wiki.Web.Controllers
 {
     public class CharactersController : Controller
     {
-        private WikiDbContext db = new WikiDbContext();
+        private IBaseRepository<Character, int> repositoryCharacters = new CharactersRepository(new WikiDbContext());
+        private IBaseRepository<CharacterType, int> repositoryCharacterTypes = new CharacterTypesRepository(new WikiDbContext());
 
         // GET: Characters
         public ActionResult Index()
         {
-            return View(db.Characters.ToList());
+
+            return View(Mapper.Map<List<Character>, List<CharacterIndexViewModel>>(repositoryCharacters.List()));
         }
+        public ActionResult FilterByName(string name)
+        {
+            List<Character> characters = repositoryCharacters.List();
+            if (name != null)
+            {
+                characters = characters.Where(a => a.Name.Contains(name)).ToList();
+            }
+
+            return Json(Mapper.Map<List<Character>, List<CharacterIndexViewModel>>(characters), JsonRequestBehavior.AllowGet);
+        }
+
+
 
         // GET: Characters/Details/5
         public ActionResult Details(int? id)
@@ -28,17 +47,18 @@ namespace Wiki.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Character character = db.Characters.Find(id);
+            Character character = repositoryCharacters.Find(id.Value);
             if (character == null)
             {
                 return HttpNotFound();
             }
-            return View(character);
+            return View(Mapper.Map<Character, CharacterIndexViewModel>(character));
         }
 
         // GET: Characters/Create
         public ActionResult Create()
         {
+            ViewBag.IdType = new SelectList(Mapper.Map<List<CharacterType>, List<CharacterTypeIndexViewModel>>(repositoryCharacterTypes.List()), "Id", "Name");
             return View();
         }
 
@@ -47,16 +67,16 @@ namespace Wiki.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,Type,Origin")] Character character)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,IdType,Origin")] CharacterViewModel characterViewModel)
         {
             if (ModelState.IsValid)
             {
-                db.Characters.Add(character);
-                db.SaveChanges();
+                repositoryCharacters.Add(Mapper.Map<CharacterViewModel, Character>(characterViewModel));
                 return RedirectToAction("Index");
             }
 
-            return View(character);
+            ViewBag.IdType = new SelectList(Mapper.Map<List<CharacterType>, List<CharacterTypeIndexViewModel>>(repositoryCharacterTypes.List()), "Id", "Name", characterViewModel.IdType);
+            return View(characterViewModel);
         }
 
         // GET: Characters/Edit/5
@@ -66,12 +86,13 @@ namespace Wiki.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Character character = db.Characters.Find(id);
+            Character character = repositoryCharacters.Find(id.Value);
             if (character == null)
             {
                 return HttpNotFound();
             }
-            return View(character);
+            ViewBag.IdType = new SelectList(Mapper.Map<List<CharacterType>, List<CharacterTypeIndexViewModel>>(repositoryCharacterTypes.List()), "Id", "Name", character.IdType);
+            return View(Mapper.Map<Character, CharacterViewModel>(character));
         }
 
         // POST: Characters/Edit/5
@@ -79,15 +100,15 @@ namespace Wiki.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,Type,Origin")] Character character)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,IdType,Origin")] CharacterViewModel characterViewModel)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(character).State = EntityState.Modified;
-                db.SaveChanges();
+                repositoryCharacters.Edit(Mapper.Map<CharacterViewModel, Character>(characterViewModel));
                 return RedirectToAction("Index");
             }
-            return View(character);
+            ViewBag.IdType = new SelectList(Mapper.Map<List<CharacterType>, List<CharacterTypeIndexViewModel>>(repositoryCharacterTypes.List()), "Id", "Name", characterViewModel.IdType);
+            return View(characterViewModel);
         }
 
         // GET: Characters/Delete/5
@@ -97,12 +118,12 @@ namespace Wiki.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Character character = db.Characters.Find(id);
+            Character character = repositoryCharacters.Find(id.Value);
             if (character == null)
             {
                 return HttpNotFound();
             }
-            return View(character);
+            return View(Mapper.Map<Character, CharacterIndexViewModel>(character));
         }
 
         // POST: Characters/Delete/5
@@ -110,19 +131,8 @@ namespace Wiki.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Character character = db.Characters.Find(id);
-            db.Characters.Remove(character);
-            db.SaveChanges();
+            repositoryCharacters.RemoveById(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

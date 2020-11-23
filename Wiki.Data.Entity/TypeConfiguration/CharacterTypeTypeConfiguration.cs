@@ -8,11 +8,11 @@ using Wiki.Generic.Entity;
 
 namespace Wiki.Data.Entity.TypeConfiguration
 {
-    class CharacterTypeConfiguration : WikiEntityAbstractConfig<Character>
+    public class CharacterTypeTypeConfiguration : WikiEntityAbstractConfig<CharacterType>
     {
         protected override void configureTableName()
         {
-            ToTable("Character");
+            ToTable("CharacterType");
         }
 
         protected override void configureTableFields()
@@ -23,23 +23,14 @@ namespace Wiki.Data.Entity.TypeConfiguration
                 .HasColumnName("Id");
 
             Property(p => p.Name)
-                .IsRequired()
-                .HasMaxLength(100)
-                .HasColumnName("Name");
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnName("Name");
 
             Property(p => p.Description)
-                .IsOptional()
-                .HasMaxLength(200)
-                .HasColumnName("Description");
-
-            Property(p => p.IdType)
-                .IsRequired()
-                .HasColumnName("IdType");
-
-            Property(p => p.Origin)
-                .IsOptional()
-                .HasMaxLength(50)
-                .HasColumnName("Origin");
+                    .IsOptional()
+                    .HasMaxLength(200)
+                    .HasColumnName("Description");
         }
 
         protected override void configurePrimaryKey()
@@ -49,9 +40,6 @@ namespace Wiki.Data.Entity.TypeConfiguration
 
         protected override void configureForeignKey()
         {
-            HasRequired(p => p.Type)
-                .WithMany(p => p.Characters)
-                .HasForeignKey(fk => fk.IdType);
         }
     }
 }

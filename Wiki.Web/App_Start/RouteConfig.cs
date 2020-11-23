@@ -14,6 +14,12 @@ namespace Wiki.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Filter by name",
+                url: "Characters/FilterByName/{name}",
+                defaults: new { controller = "Characters", action = "FilterByName", name = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Characters", action = "Index", id = UrlParameter.Optional }

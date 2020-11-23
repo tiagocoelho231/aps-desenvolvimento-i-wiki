@@ -1,4 +1,4 @@
-﻿@model Wiki.Domain.Character
+﻿@model Wiki.Web.ViewModels.Character.CharacterViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -34,10 +34,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.IdType, "Type", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+                @Html.DropDownList("IdType", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IdType, "", new { @class = "text-danger" })
             </div>
         </div>
 
