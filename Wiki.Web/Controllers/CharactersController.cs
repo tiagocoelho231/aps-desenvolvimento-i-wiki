@@ -16,6 +16,7 @@ using Wiki.Web.ViewModels.CharacterType;
 
 namespace Wiki.Web.Controllers
 {
+    [Authorize]
     public class CharactersController : Controller
     {
         private IBaseRepository<Character, int> repositoryCharacters = new CharactersRepository(new WikiDbContext());

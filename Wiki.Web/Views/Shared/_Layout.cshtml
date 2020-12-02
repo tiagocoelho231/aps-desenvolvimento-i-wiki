@@ -16,12 +16,27 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Wiki", "Index", "Characters", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Locadora Filmes", User.Identity.IsAuthenticated ? "Index" : "Login", User.Identity.IsAuthenticated ? "Characters" : "Users", new { area = "" }, new { @class = "navbar-brand" })
+                
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Characters", "Index", "Characters")</li>
-                    <li>@Html.ActionLink("Types", "Index", "CharacterTypes")</li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Characters", "Index", "Characters")</li>
+                        <li>@Html.ActionLink("Types", "Index", "CharacterTypes")</li>
+                        <li>
+                            <p>Hello, @User.Identity.Name</p>
+                        </li>
+                        <li>
+                            @Html.ActionLink("Logoff", "Logoff", "Users")
+                        </li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Login", "Login", "Users")</li>
+                    }
+
                 </ul>
             </div>
         </div>
